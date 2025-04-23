@@ -1,0 +1,4 @@
+Operations to perform:
+  Apply all migrations: admin, auth, bookmodule, contenttypes, sessions
+Running migrations:
+  Applying bookmodule.0001_initial... OK

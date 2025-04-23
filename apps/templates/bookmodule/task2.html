@@ -1,0 +1,8 @@
+<h2>Books with edition > 3 and title/author containing 'co'</h2>
+<ul>
+  {% for book in books %}
+    <li>{{ book.title }} by {{ book.author }} — Edition {{ book.edition }}</li>
+  {% empty %}
+    <li>No books found.</li>
+  {% endfor %}
+</ul>

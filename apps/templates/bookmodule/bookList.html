@@ -1,0 +1,47 @@
+{% extends "bookmodule/base.html" %}
+{% load static %}
+
+{% block title %} Searching Page {% endblock title %}
+
+{% block stylesheets %}
+<style>
+/* Simple style to show books */
+.book-list {
+    margin-top: 20px;
+}
+
+.book-item {
+    background-color: #f8f9fa;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+
+<h2>Search Results</h2>
+
+{% if books %}
+    <div class="book-list">
+        {% for book in books %}
+            <div class="book-item">
+                <strong>Title:</strong> {{ book.title }} <br>
+                <strong>Author:</strong> {{ book.author }} <br>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No books found.</p>
+{% endif %}
+
+{% endblock content %}
+
+{% for obj in books %}
+ID: {{obj.id}}, Title: {{obj.title}}
+<hr>
+ 
+
+{% endfor %}
