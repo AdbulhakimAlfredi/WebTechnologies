@@ -4,6 +4,8 @@ from .models import Book
 from django.db.models import Q 
 from django.db.models import Count, Sum, Avg, Max, Min
 from .models import Student, Address
+from .models import Department, Course
+
 
 def index(request): 
     name = request.GET.get("name") or "world!"  # Get the "name" parameter from URL
@@ -148,3 +150,45 @@ def task5(request):
 def task7(request):
     student_counts = Address.objects.annotate(num_students=Count('student'))
     return render(request, 'bookmodule/task7.html', {'student_counts': student_counts})
+
+
+def lab9task1(request):
+    departments = Department.objects.all()  
+    department_counts = []
+    for department in departments:
+        count = department.student_set.count()  
+        department_counts.append({'department': department, 'count': count})
+    return render(request, 'bookmodule/lab9task1.html', {'department_counts': department_counts})
+
+def lab9task2(request):
+    courses = Course.objects.all()  
+    course_counts = []
+    for course in courses:
+        count = course.student_set.count()  
+        course_counts.append({'course': course, 'count': count})
+    return render(request, 'bookmodule/lab9task2.html', {'course_counts': course_counts})
+
+
+def lab9task3(request):
+    departments = Department.objects.all() 
+    oldest_students = []
+    for department in departments:
+        oldest_student = department.student_set.order_by('id').first() 
+        oldest_students.append({'department': department, 'oldest_student': oldest_student})
+    return render(request, 'bookmodule/lab9task3.html', {'oldest_students': oldest_students})
+
+def lab9task4(request):
+    departments = Department.objects.all()
+    department_counts = []
+    for department in departments:
+        count = department.student_set.count()  
+        if count > 2:  
+            department_counts.append({'department': department, 'count': count})
+    
+    department_counts.sort(key=lambda x: x['count'], reverse=True)
+    
+    return render(request, 'bookmodule/lab9task4.html', {'department_counts': department_counts})
+
+
+
+

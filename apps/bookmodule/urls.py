@@ -1,7 +1,9 @@
-from django.urls import path
+from django.urls import path, include
+
 from . import views
 
 urlpatterns = [
+
     path('', views.index, name="books.index"),
     path('list_books/', views.list_books, name="books.list_books"),
     path('aboutus/', views.aboutus, name="books.aboutus"),
@@ -19,5 +21,12 @@ urlpatterns = [
     path('lab8/task4/', views.task4, name='task4'),
     path('lab8/task5/', views.task5, name='task5'),
     path('lab8/task7/', views.task7, name='task7'),
+    path('lab9/task1/', views.lab9task1, name='Lab9Task1'),
+    path('lab9/task2/', views.lab9task2, name='Lab9Task2'),
+    path('lab9/task3/', views.lab9task3, name='Lab9Task3'),
+    path('lab9/task4/', views.lab9task4, name='Lab9Task4'),
+    
+
+
 
 ]
