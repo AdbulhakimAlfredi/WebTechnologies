@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Book
 from django.db.models import Q 
 from django.db.models import Count, Sum, Avg, Max, Min
 from .models import Student, Address
 from .models import Department, Course
+from .forms import BookForm
 
 
 def index(request): 
@@ -189,6 +190,38 @@ def lab9task4(request):
     
     return render(request, 'bookmodule/lab9task4.html', {'department_counts': department_counts})
 
+def list_books(request):
+    books = Book.objects.all()
+    return render(request, 'bookmodule/list_books.html', {'books': books})
 
 
+
+def add_book(request):
+    if request.method == "POST":
+        form = BookForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('list_books')  
+    else:
+        form = BookForm()
+
+    return render(request, 'bookmodule/add_book.html', {'form': form})
+
+def edit_book(request, id):
+    book = Book.objects.get(id=id)
+    if request.method == "POST":
+        form = BookForm(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+            return redirect('list_books') 
+    else:
+        form = BookForm(instance=book)
+
+    return render(request, 'bookmodule/edit_book.html', {'form': form, 'book': book})
+
+
+def delete_book(request, id):
+    book = Book.objects.get(id=id)
+    book.delete()
+    return redirect('/books/lab9_part1/listbooks')  # Redirect to the list view
 

@@ -1,10 +1,12 @@
 from django.db import models
 
 class Book(models.Model):
-    title = models.CharField(max_length=50)
-    author = models.CharField(max_length=50)
-    price = models.FloatField(default=0.0)
-    edition = models.SmallIntegerField(default=1)
+    title = models.CharField(max_length=200)
+    author = models.CharField(max_length=200)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    edition = models.CharField(max_length=100)
+    isbn_number = models.CharField(max_length=13, blank=True, null=True)
+    publication_date = models.DateField(blank=True, null=True)
 
 class Address(models.Model):
     city = models.CharField(max_length=100)
