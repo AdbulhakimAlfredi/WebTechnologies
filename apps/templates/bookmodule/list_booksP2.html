@@ -1,0 +1,14 @@
+<!-- bookmodule/list_books_part2.html -->
+<h1>List of Books (Part 2)</h1>
+
+<!-- Display the list of books -->
+{% for book in books %}
+    <div>
+        ID: {{ book.id }} | Title: {{ book.title }} | Author: {{ book.author }}
+        <a href="{% url 'edit_bookP2' book.id %}">Edit</a> |
+        <a href="{% url 'delete_bookP2' book.id %}">Delete</a>
+    </div>
+{% endfor %}
+
+<!-- Link to add a new book -->
+<a href="{% url 'add_bookP2' %}">Add New Book</a>

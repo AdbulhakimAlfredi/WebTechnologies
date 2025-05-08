@@ -1,0 +1,11 @@
+<!-- bookmodule/delete_book_part2.html -->
+<h1>Delete Book (Part 2)</h1>
+
+<p>Are you sure you want to delete the book "{{ book.title }}"?</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Yes, Delete</button>
+</form>
+
+<a href="{% url 'list_booksP2' %}">Cancel</a>

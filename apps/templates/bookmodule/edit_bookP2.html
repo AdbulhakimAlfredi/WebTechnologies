@@ -1,0 +1,10 @@
+<!-- bookmodule/edit_book_part2.html -->
+<h1>Edit Book (Part 2)</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}  <!-- Render the form -->
+    <button type="submit">Save Changes</button>
+</form>
+
+<a href="{% url 'list_booksP2' %}">Cancel</a>

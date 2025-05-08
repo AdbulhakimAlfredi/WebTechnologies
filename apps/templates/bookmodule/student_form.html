@@ -1,0 +1,9 @@
+<!-- student_form.html -->
+
+<h1>{{ form.instance.pk|yesno:"Update Student,Add New Student" }}</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ student_form.as_p }}
+    <button type="submit">Submit</button>
+</form>

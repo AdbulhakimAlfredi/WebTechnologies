@@ -1,0 +1,11 @@
+{% if books %}
+    {% for book in books %}
+        <div>
+            ID: {{ book.id }} | Title: {{ book.title }} | Author: {{ book.author }}
+            <a href="{% url 'edit_bookP1' book.id %}">Edit</a> |
+            <a href="{% url 'delete_bookP1' book.id %}">Delete</a>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No books available.</p>
+{% endif %}

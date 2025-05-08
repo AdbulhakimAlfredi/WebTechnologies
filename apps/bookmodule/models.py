@@ -9,12 +9,17 @@ class Book(models.Model):
     publication_date = models.DateField(blank=True, null=True)
 
 class Address(models.Model):
+    address_line = models.CharField(max_length=255)
     city = models.CharField(max_length=100)
 
 class Student(models.Model):
     name = models.CharField(max_length=100)
     age = models.IntegerField()
     address = models.ForeignKey(Address, on_delete=models.CASCADE)
+    addresses = models.ManyToManyField(Address)
+    image = models.ImageField(upload_to='student_images/', null=True, blank=True)
+
+    
 class Course(models.Model):
     title = models.CharField(max_length=100)
     code = models.IntegerField()
@@ -30,3 +35,4 @@ class Student2(models.Model):
     card = models.OneToOneField(Card, on_delete=models.PROTECT, null=True)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     courses = models.ManyToManyField(Course)
+    image = models.ImageField(upload_to='student_images/', null=True, blank=True)

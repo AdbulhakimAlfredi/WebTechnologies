@@ -1,0 +1,10 @@
+<!-- bookmodule/add_book_part2.html -->
+<h1>Add New Book (Part 2)</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}  <!-- Render the form -->
+    <button type="submit">Add Book</button>
+</form>
+
+<a href="{% url 'list_booksP2' %}">Cancel</a>

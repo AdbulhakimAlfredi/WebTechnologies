@@ -1,0 +1,18 @@
+<!-- student_list.html -->
+
+<h1>Student List</h1>
+<ul>
+    {% for student in students %}
+        <li>
+            <strong>{{ student.name }}</strong>, Age: {{ student.age }}<br>
+            {% if student.image %}
+                <img src="{{ student.image.url }}" alt="Image of {{ student.name }}" width="100" height="100">
+            {% else %}
+                No image uploaded
+            {% endif %}
+            <br>
+            <a href="{% url 'student_image_upload' student.pk %}">Upload Image</a>
+        </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'student_add' %}">Add New Student</a>

@@ -1,0 +1,11 @@
+<!-- student_image_form.html -->
+
+<h1>Upload Image for {{ student.name }}</h1>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload Image</button>
+</form>
+
+<a href="{% url 'student_list' %}">Back to Student List</a>
